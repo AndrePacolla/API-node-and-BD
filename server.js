@@ -25,13 +25,13 @@ app.use(express.json());
 
 })
 
-//Rota de Edição.
 
+//Rota de Edição.
 app.put('/usuarios/:id',async (req, res) =>{  
 
     await prisma.user.update({
         where: {
-            id: '66b7e7631cbbcd1a3c25d497'
+            id: req.params.id
         },
         data:{
             email: req.body.email,
@@ -45,8 +45,22 @@ app.put('/usuarios/:id',async (req, res) =>{
   
   })
 
-//Rota de consumir , exibir dados
 
+// Rota para deletar Usuários
+app.delete('/usuarios/:id', async (req, res) =>{
+
+    await prisma.user.delete({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    res.status(200).json({msg: 'Usuário deletado com Sucesso'})
+
+})
+
+
+//Rota de consumir , exibir dados
 app.get('/usuarios',async (req, res)=>{
 
 
