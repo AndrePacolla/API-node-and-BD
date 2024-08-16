@@ -26,7 +26,7 @@ app.use(express.json());
 })
 
 
-//Rota de Edição.
+//Rota de Edição. Uso tipo Route Params, servira como buscador especifico
 app.put('/usuarios/:id',async (req, res) =>{  
 
     await prisma.user.update({
@@ -46,7 +46,7 @@ app.put('/usuarios/:id',async (req, res) =>{
   })
 
 
-// Rota para deletar Usuários
+// Rota para Deletar Usuários, uso tipo Route Params, servira como buscador especifico
 app.delete('/usuarios/:id', async (req, res) =>{
 
     await prisma.user.delete({
@@ -66,7 +66,7 @@ app.get('/usuarios',async (req, res)=>{
     const users = []
 
     if(req.query){
-        users = await prisma.user.findMany({
+      const  users = await prisma.user.findMany({
             where: {
                 name: req.query.name, 
                 email: req.query.email,
@@ -74,7 +74,7 @@ app.get('/usuarios',async (req, res)=>{
             }
         })
     }else{
-        users = await prisma.user.findMany();
+     const users = await prisma.user.findMany();
     }
 
     res.status(200).json(users)
