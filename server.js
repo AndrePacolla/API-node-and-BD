@@ -60,13 +60,13 @@ app.delete('/usuarios/:id', async (req, res) =>{
 })
 
 
-//Rota de consumir , exibir dados
+//Rota de consumir , exibir dados . query formato da rota de variavel e valor , where por onde vai ser feita a pesquisa, em todos os campos que quis preenceher ex : name, email , age ,etc..
 app.get('/usuarios',async (req, res)=>{
 
-    const users = []
+    let users = []
 
     if(req.query){
-      const  users = await prisma.user.findMany({
+        users = await prisma.user.findMany({
             where: {
                 name: req.query.name, 
                 email: req.query.email,
@@ -74,7 +74,7 @@ app.get('/usuarios',async (req, res)=>{
             }
         })
     }else{
-     const users = await prisma.user.findMany();
+        users = await prisma.user.findMany();
     }
 
     res.status(200).json(users)
