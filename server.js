@@ -17,7 +17,7 @@ const port = process.env.PORT || 3000;
   await prisma.user.create({
         data:{
             email: req.body.email,
-            name:  req.body.name,
+            name:  req.body.name,    
             age:   req.body.age
         }
 
@@ -77,7 +77,6 @@ app.get('/usuarios',async (req, res)=>{
 
     res.status(200).json(users)
     
-
 })
 
-app.listen(3000);
+app.listen(port);
