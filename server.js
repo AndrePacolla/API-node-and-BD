@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 
  app.post('/usuarios',async (req, res) =>{  
@@ -21,7 +21,7 @@ const port = process.env.PORT || 3001;
             age:   req.body.age
         }
 
-    })
+    })  
   
     res.status(201).json(req.json) 
 
@@ -76,6 +76,7 @@ app.get('/usuarios',async (req, res)=>{
     }
 
     res.status(200).json(users)
+    
 
 })
 
