@@ -7,12 +7,11 @@ const prisma = new PrismaClient()
 
 const app = express();
 app.use(express.json());
-app.use(cors())
+app.use(cors());
+
+const port = process.env.PORT || 3001;
 
 
-
-
-//Rota de Criação.
  app.post('/usuarios',async (req, res) =>{  
 
   await prisma.user.create({
@@ -28,8 +27,6 @@ app.use(cors())
 
 })
 
-
-//Rota de Edição. Uso tipo Route Params, servira como buscador especifico
 app.put('/usuarios/:id',async (req, res) =>{  
 
     await prisma.user.update({
@@ -45,7 +42,6 @@ app.put('/usuarios/:id',async (req, res) =>{
       })
     
       res.status(201).json(req.json) 
-  
   })
 
 
@@ -63,7 +59,6 @@ app.delete('/usuarios/:id', async (req, res) =>{
 })
 
 
-//Rota de consumir , exibir dados . query formato da rota de variavel e valor , where por onde vai ser feita a pesquisa, em todos os campos que quis preenceher ex : name, email , age ,etc..
 app.get('/usuarios',async (req, res)=>{
 
     let users = []
